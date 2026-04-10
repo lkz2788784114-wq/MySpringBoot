@@ -19,8 +19,6 @@ public class productController {
     @Autowired
     private productService service;
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
-    @Autowired
     private RedisUtils redisUtils;
     @ApiOperation("上架商品")
     @PostMapping("/add")
