@@ -53,6 +53,7 @@ public class productController {
         redisUtils.del(redisKey);
         return Result.success("删除成功");
     }
+    // 测试 Gitee 推送
     @ApiOperation("view")
     @GetMapping("/view/{id}")
     public Result<String> view(@PathVariable("id") Integer id) {
