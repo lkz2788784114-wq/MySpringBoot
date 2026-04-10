@@ -62,7 +62,7 @@ public class productController {
     @ApiOperation("查询所有商品列表")
     @GetMapping("/getAll")
     public Result<List<Product>> getAll() {
-        String redisKey = "product:all";
+        String redisKey = "products:all";
         List<Product> products = service.selectAll();
         redisUtils.set(redisKey,products,60*60);
         return Result.success(products);
