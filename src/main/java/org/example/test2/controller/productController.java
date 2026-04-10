@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Api(tags = "商品模块")
 @RestController
 @RequestMapping("/api/users")
@@ -58,6 +60,14 @@ public class productController {
     public Result<String> view(@PathVariable("id") Integer id) {
        String redisView =  "productView:"+service.selectById(id).getProductName();
          return Result.success( "当前商品浏览量："+redisUtils.increment(redisView,1));
+    }
+    @ApiOperation("查询所有商品列表")
+    @GetMapping("/getAll")
+    public Result<List<Product>> getAll() {
+        String redisKey = "product:all";
+        List<Product> products = service.selectAll();
+        redisUtils.set(redisKey,products,60*60);
+        return Result.success(products);
     }
 
 

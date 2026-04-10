@@ -47,4 +47,7 @@ public class productService {
         }
         mapper.deleteById(id);
     }
+    public List<Product> selectAllProduct() {
+        return mapper.selectList(null);
+    }
 }
